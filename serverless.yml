@@ -1,0 +1,219 @@
+service: url-shortener
+
+frameworkVersion: "4"
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: us-east-1
+  environment:
+    USERS_TABLE: ${self:service}-users-${sls:stage}
+    LINKS_TABLE: ${self:service}-links-${sls:stage}
+    CLICKS_TABLE: ${self:service}-clicks-${sls:stage}
+    ROLLUPS_TABLE: ${self:service}-rollups-${sls:stage}
+    CLICKS_QUEUE_URL: !Ref ClicksQueue
+    JSECRET: ${env:JSECRET}
+    JWT_EXPIRATION_TIME: 8h
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:GetItem
+            - dynamodb:PutItem
+            - dynamodb:UpdateItem
+            - dynamodb:DeleteItem
+            - dynamodb:Query
+            - dynamodb:Scan
+          Resource:
+            - !GetAtt UsersTable.Arn
+            - !GetAtt LinksTable.Arn
+            - !Sub "${LinksTable.Arn}/index/*"
+            - !GetAtt ClicksTable.Arn
+            - !GetAtt RollupsTable.Arn
+        - Effect: Allow
+          Action:
+            - sqs:SendMessage
+          Resource: !GetAtt ClicksQueue.Arn
+        - Effect: Allow
+          Action:
+            - sqs:ReceiveMessage
+            - sqs:DeleteMessage
+            - sqs:GetQueueAttributes
+          Resource: !GetAtt ClicksQueue.Arn
+
+functions:
+  # Auth
+  authorize:
+    handler: auth/authorize.handler
+
+  register:
+    handler: handler.register
+    events:
+      - http:
+          path: auth/register
+          method: post
+          cors: true
+
+  login:
+    handler: handler.login
+    events:
+      - http:
+          path: auth/login
+          method: post
+          cors: true
+
+  # Links CRUD (protected)
+  createLink:
+    handler: handler.createLink
+    events:
+      - http:
+          path: links
+          method: post
+          cors: true
+          authorizer: authorize
+
+  getLinks:
+    handler: handler.getLinks
+    events:
+      - http:
+          path: links
+          method: get
+          cors: true
+          authorizer: authorize
+
+  getLink:
+    handler: handler.getLink
+    events:
+      - http:
+          path: links/{id}
+          method: get
+          cors: true
+          authorizer: authorize
+
+  updateLink:
+    handler: handler.updateLink
+    events:
+      - http:
+          path: links/{id}
+          method: put
+          cors: true
+          authorizer: authorize
+
+  deleteLink:
+    handler: handler.deleteLink
+    events:
+      - http:
+          path: links/{id}
+          method: delete
+          cors: true
+          authorizer: authorize
+
+  # Public redirect
+  redirect:
+    handler: handler.redirect
+    events:
+      - http:
+          path: /{code}
+          method: get
+
+  # SQS-triggered analytics processor
+  analytics:
+    handler: analytics.handler
+    events:
+      - sqs:
+          arn: !GetAtt ClicksQueue.Arn
+          batchSize: 10
+          functionResponseType: ReportBatchItemFailures
+
+  # EventBridge daily rollup
+  rollup:
+    handler: rollup.handler
+    events:
+      - schedule:
+          rate: cron(0 0 * * ? *)
+          description: Daily click stats rollup
+
+resources:
+  Resources:
+    UsersTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:provider.environment.USERS_TABLE}
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: username
+            AttributeType: S
+        KeySchema:
+          - AttributeName: username
+            KeyType: HASH
+
+    LinksTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:provider.environment.LINKS_TABLE}
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: code
+            AttributeType: S
+          - AttributeName: username
+            AttributeType: S
+        KeySchema:
+          - AttributeName: code
+            KeyType: HASH
+        GlobalSecondaryIndexes:
+          - IndexName: username-index
+            KeySchema:
+              - AttributeName: username
+                KeyType: HASH
+            Projection:
+              ProjectionType: ALL
+
+    ClicksTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:provider.environment.CLICKS_TABLE}
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: code
+            AttributeType: S
+          - AttributeName: timestamp
+            AttributeType: S
+        KeySchema:
+          - AttributeName: code
+            KeyType: HASH
+          - AttributeName: timestamp
+            KeyType: RANGE
+        TimeToLiveSpecification:
+          AttributeName: ttl
+          Enabled: true
+
+    RollupsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:provider.environment.ROLLUPS_TABLE}
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: date
+            AttributeType: S
+        KeySchema:
+          - AttributeName: date
+            KeyType: HASH
+
+    ClicksQueue:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: ${self:service}-clicks-${sls:stage}
+        VisibilityTimeout: 30
+        RedrivePolicy:
+          deadLetterTargetArn: !GetAtt ClicksDLQ.Arn
+          maxReceiveCount: 3
+
+    ClicksDLQ:
+      Type: AWS::SQS::Queue
+      Properties:
+        QueueName: ${self:service}-clicks-dlq-${sls:stage}
+        MessageRetentionPeriod: 1209600  # 14 days
+
+plugins:
+  - serverless-offline
