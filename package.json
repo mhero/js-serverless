@@ -1,0 +1,24 @@
+{
+    "name": "markdown-rest-mark",
+    "version": "1.0.0",
+    "description": "Serverless service CRUD.",
+    "homepage": "https://github.com/mhero",
+    "main": "handler.js",
+    "scripts": {
+        "test": "jest",
+        "offline": "sls offline start --skipCacheInvalidation"
+    },
+    "keywords": [],
+    "devDependencies": {
+        "serverless-offline": "^3.31.3",
+        "jest": "^23.6.0",
+        "mockingoose": "^2.12.0"
+    },
+    "dependencies": {
+        "dotenv": "^6.2.0",
+        "jsonwebtoken": "^8.4.0",
+        "lodash": "^4.17.11",
+        "mongoose": "^5.4.1",
+        "serverless": "^1.35.1"
+    }
+}

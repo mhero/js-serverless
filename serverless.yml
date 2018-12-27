@@ -1,0 +1,63 @@
+service: rest-api
+
+provider:
+  name: aws
+  runtime: nodejs6.10
+  memorySize: 128
+  timeout: 10
+  stage: dev
+  region: us-east-1
+
+functions:
+  login:
+    handler: auth/login.handler
+    events:
+      - http:
+          path: sessions
+          method: post
+          cors: true
+  authorize:
+    handler: auth/authorize.handler
+  create:
+    handler: handler.create
+    events:
+      - http:
+          path: notes
+          method: post
+          cors: true
+          authorizer: authorize
+  getOne:
+    handler: handler.getOne
+    events:
+      - http:
+          path: notes/{id}
+          method: get
+          cors: true
+          authorizer: authorize
+  getAll:
+    handler: handler.getAll
+    events:
+     - http:
+         path: notes
+         method: get
+         cors: true
+         authorizer: authorize
+  update:
+    handler: handler.update
+    events:
+     - http:
+         path: notes/{id}
+         method: put
+         cors: true
+         authorizer: authorize
+  delete:
+    handler: handler.delete
+    events:
+     - http:
+         path: notes/{id}
+         method: delete
+         cors: true
+         authorizer: authorize
+
+plugins:
+- serverless-offline
