@@ -1,0 +1,141 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.15.0
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  SNYK-JS-LODASH-450202:
+    - lodash:
+        patched: '2019-07-04T03:24:27.064Z'
+    - serverless > lodash:
+        patched: '2019-07-04T03:24:27.064Z'
+    - mongoose > async > lodash:
+        patched: '2019-07-04T03:24:27.064Z'
+    - serverless > archiver > lodash:
+        patched: '2019-07-04T03:24:27.064Z'
+    - serverless > archiver > async > lodash:
+        patched: '2019-07-04T03:24:27.064Z'
+    - serverless > archiver > archiver-utils > lodash:
+        patched: '2019-07-04T03:24:27.064Z'
+    - serverless > archiver > zip-stream > lodash:
+        patched: '2019-07-04T03:24:27.064Z'
+    - serverless > json-refs > graphlib > lodash:
+        patched: '2019-07-04T03:24:27.064Z'
+    - serverless > tabtab > inquirer > lodash:
+        patched: '2019-07-04T03:24:27.064Z'
+    - serverless > archiver > zip-stream > archiver-utils > lodash:
+        patched: '2019-07-04T03:24:27.064Z'
+    - snyk > snyk-nodejs-lockfile-parser > lodash:
+        patched: '2019-07-06T20:23:57.679Z'
+    - snyk > lodash:
+        patched: '2019-07-06T20:23:57.679Z'
+    - snyk > inquirer > lodash:
+        patched: '2019-07-06T20:23:57.679Z'
+    - snyk > snyk-config > lodash:
+        patched: '2019-07-06T20:23:57.679Z'
+    - snyk > snyk-mvn-plugin > lodash:
+        patched: '2019-07-06T20:23:57.679Z'
+    - snyk > @snyk/dep-graph > lodash:
+        patched: '2019-07-06T20:23:57.679Z'
+    - snyk > snyk-nuget-plugin > lodash:
+        patched: '2019-07-06T20:23:57.679Z'
+    - snyk > snyk-nodejs-lockfile-parser > graphlib > lodash:
+        patched: '2019-07-06T20:23:57.679Z'
+    - snyk > @snyk/dep-graph > graphlib > lodash:
+        patched: '2019-07-06T20:23:57.679Z'
+    - snyk > snyk-go-plugin > graphlib > lodash:
+        patched: '2019-07-06T20:23:57.679Z'
+    - snyk > snyk-php-plugin > @snyk/composer-lockfile-parser > lodash:
+        patched: '2019-07-06T20:23:57.679Z'
+  SNYK-JS-HTTPSPROXYAGENT-469131:
+    - serverless > https-proxy-agent:
+        patched: '2019-10-04T03:22:24.146Z'
+    - snyk > proxy-agent > https-proxy-agent:
+        patched: '2019-10-04T03:22:24.146Z'
+    - snyk > proxy-agent > pac-proxy-agent > https-proxy-agent:
+        patched: '2019-10-04T03:22:24.146Z'
+  SNYK-JS-TREEKILL-536781:
+    - snyk > snyk-sbt-plugin > tree-kill:
+        patched: '2020-01-12T19:24:28.261Z'
+  SNYK-JS-LODASH-567746:
+    - lodash:
+        patched: '2020-05-01T03:19:56.257Z'
+    - serverless > lodash:
+        patched: '2020-05-01T03:19:56.257Z'
+    - snyk > lodash:
+        patched: '2020-05-01T03:19:56.257Z'
+    - serverless > @serverless/enterprise-plugin > lodash:
+        patched: '2020-05-01T03:19:56.257Z'
+    - serverless > archiver > lodash:
+        patched: '2020-05-01T03:19:56.257Z'
+    - serverless > inquirer > lodash:
+        patched: '2020-05-01T03:19:56.257Z'
+    - snyk > inquirer > lodash:
+        patched: '2020-05-01T03:19:56.257Z'
+    - snyk > @snyk/dep-graph > lodash:
+        patched: '2020-05-01T03:19:56.257Z'
+    - snyk > snyk-config > lodash:
+        patched: '2020-05-01T03:19:56.257Z'
+    - snyk > snyk-mvn-plugin > lodash:
+        patched: '2020-05-01T03:19:56.257Z'
+    - snyk > snyk-nodejs-lockfile-parser > lodash:
+        patched: '2020-05-01T03:19:56.257Z'
+    - snyk > snyk-nuget-plugin > lodash:
+        patched: '2020-05-01T03:19:56.257Z'
+    - serverless > json-refs > graphlib > lodash:
+        patched: '2020-05-01T03:19:56.257Z'
+    - snyk > @snyk/dep-graph > graphlib > lodash:
+        patched: '2020-05-01T03:19:56.257Z'
+    - snyk > snyk-go-plugin > graphlib > lodash:
+        patched: '2020-05-01T03:19:56.257Z'
+    - snyk > snyk-nodejs-lockfile-parser > graphlib > lodash:
+        patched: '2020-05-01T03:19:56.257Z'
+    - serverless > @serverless/components > prettyoutput > lodash:
+        patched: '2020-05-01T03:19:56.257Z'
+    - serverless > @serverless/enterprise-plugin > @serverless/event-mocks > lodash:
+        patched: '2020-05-01T03:19:56.257Z'
+    - serverless > archiver > archiver-utils > lodash:
+        patched: '2020-05-01T03:19:56.257Z'
+    - serverless > archiver > async > lodash:
+        patched: '2020-05-01T03:19:56.257Z'
+    - serverless > archiver > zip-stream > lodash:
+        patched: '2020-05-01T03:19:56.257Z'
+    - serverless > tabtab > inquirer > lodash:
+        patched: '2020-05-01T03:19:56.257Z'
+    - snyk > @snyk/snyk-cocoapods-plugin > @snyk/dep-graph > lodash:
+        patched: '2020-05-01T03:19:56.257Z'
+    - snyk > snyk-nuget-plugin > dotnet-deps-parser > lodash:
+        patched: '2020-05-01T03:19:56.257Z'
+    - snyk > snyk-php-plugin > @snyk/composer-lockfile-parser > lodash:
+        patched: '2020-05-01T03:19:56.257Z'
+    - serverless > @serverless/cli > @serverless/template > graphlib > lodash:
+        patched: '2020-05-01T03:19:56.257Z'
+    - snyk > @snyk/snyk-cocoapods-plugin > @snyk/dep-graph > graphlib > lodash:
+        patched: '2020-05-01T03:19:56.257Z'
+    - serverless > archiver > zip-stream > archiver-utils > lodash:
+        patched: '2020-05-01T03:19:56.257Z'
+    - snyk > @snyk/snyk-cocoapods-plugin > @snyk/cocoapods-lockfile-parser > @snyk/ruby-semver > lodash:
+        patched: '2020-05-01T03:19:56.257Z'
+    - snyk > @snyk/snyk-cocoapods-plugin > @snyk/cocoapods-lockfile-parser > @snyk/dep-graph > graphlib > lodash:
+        patched: '2020-05-01T03:19:56.257Z'
+    - serverless > @serverless/enterprise-plugin > dependency-tree > precinct > detective-typescript > @typescript-eslint/typescript-estree > lodash:
+        patched: '2020-05-01T03:19:56.257Z'
+    - serverless > @serverless/components > graphlib > lodash:
+        patched: '2020-05-02T18:51:21.059Z'
+    - serverless > @serverless/components > @serverless/inquirer > inquirer > lodash:
+        patched: '2020-05-02T18:51:21.059Z'
+    - serverless > @serverless/components > @serverless/platform-client-china > @serverless/utils-china > winston > async > lodash:
+        patched: '2020-05-02T18:51:21.059Z'
+    - serverless > @serverless/components > @serverless/platform-client-china > @serverless/utils-china > @tencent-sdk/capi > request-promise-native > request-promise-core > lodash:
+        patched: '2020-05-02T18:51:21.059Z'
+    - serverless > json-refs > lodash:
+        patched: '2020-06-21T19:41:59.791Z'
+    - serverless > @serverless/inquirer > inquirer > lodash:
+        patched: '2020-06-21T19:41:59.791Z'
+    - serverless > @serverless/components > @serverless/platform-client-china > archiver > async > lodash:
+        patched: '2020-06-21T19:41:59.791Z'
+  'npm:debug:20170905':
+    - serverless > @serverless/components > @serverless/platform-client-china > @serverless/utils-china > socket.io-stream > debug:
+        patched: '2020-05-02T18:51:21.059Z'
+  'npm:ms:20170412':
+    - serverless > @serverless/components > @serverless/platform-client-china > @serverless/utils-china > socket.io-stream > debug > ms:
+        patched: '2020-05-02T18:51:21.059Z'
