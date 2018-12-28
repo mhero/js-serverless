@@ -13,20 +13,15 @@ const authorizeUser = (userScopes, methodArn) => {
 };
 
 module.exports.handler = (event, context, callback) => {
-    console.log('authorize');
-    console.log(event);
     const token = event.authorizationToken;
 
     try {
         // Verify JWT
         const decoded = jwt.verify(token, JSECRET);
-        console.log(JSON.stringify(decoded));
 
         // Checks if the user's scopes allow her to call the current endpoint ARN
         const user = decoded.user;
         const isAllowed = authorizeUser(user.scopes, event.methodArn);
-
-        console.log("hola "+ isAllowed);
 
         // Return an IAM policy document for the current endpoint
         const effect = isAllowed ? 'Allow' : 'Deny';
