@@ -24,3 +24,25 @@ patch:
         patched: '2019-07-04T03:24:27.064Z'
     - serverless > archiver > zip-stream > archiver-utils > lodash:
         patched: '2019-07-04T03:24:27.064Z'
+    - snyk > snyk-nodejs-lockfile-parser > lodash:
+        patched: '2019-07-06T20:23:57.679Z'
+    - snyk > lodash:
+        patched: '2019-07-06T20:23:57.679Z'
+    - snyk > inquirer > lodash:
+        patched: '2019-07-06T20:23:57.679Z'
+    - snyk > snyk-config > lodash:
+        patched: '2019-07-06T20:23:57.679Z'
+    - snyk > snyk-mvn-plugin > lodash:
+        patched: '2019-07-06T20:23:57.679Z'
+    - snyk > @snyk/dep-graph > lodash:
+        patched: '2019-07-06T20:23:57.679Z'
+    - snyk > snyk-nuget-plugin > lodash:
+        patched: '2019-07-06T20:23:57.679Z'
+    - snyk > snyk-nodejs-lockfile-parser > graphlib > lodash:
+        patched: '2019-07-06T20:23:57.679Z'
+    - snyk > @snyk/dep-graph > graphlib > lodash:
+        patched: '2019-07-06T20:23:57.679Z'
+    - snyk > snyk-go-plugin > graphlib > lodash:
+        patched: '2019-07-06T20:23:57.679Z'
+    - snyk > snyk-php-plugin > @snyk/composer-lockfile-parser > lodash:
+        patched: '2019-07-06T20:23:57.679Z'
