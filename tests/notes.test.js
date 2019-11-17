@@ -1,4 +1,4 @@
-const Note = require('../models/notes');
+const Note = require('../model/notes');
 const mockingoose = require('mockingoose').default;
 
 it('should find', () => {

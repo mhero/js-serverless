@@ -2,15 +2,24 @@
 
 require('dotenv').config({path: './variables.env'});
 const connectToDatabase = require('./db');
-const Note = require('./models/notes');
+const Note = require('./model/notes');
 const NotesService = require('./service/note_service');
 
 let notes = new NotesService(connectToDatabase(), Note);
 
+module.exports.ok = (event, context, callback) => {
+    return callback(null, {
+        statusCode: 200,
+        headers: {
+            'Content-Type': 'text/plain'
+        },
+        body: 'Ok.'
+    });
+};
 
 module.exports.create = (event, context, callback) => {
     return notes.create(event, context, callback);
-}
+};
 
 module.exports.getOne = (event, context, callback) => {
     return notes.getOne(event, context, callback);

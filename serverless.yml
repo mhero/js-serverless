@@ -9,6 +9,13 @@ provider:
   region: us-east-1
 
 functions:
+  ok:
+    handler: handler.ok
+    events:
+      - http:
+          path: ok
+          method: get
+          cors: true
   login:
     handler: auth/login.handler
     events:
