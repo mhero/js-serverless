@@ -2,7 +2,7 @@
 
 require('dotenv').config({ path: './variables.env' });
 const jwt = require('jsonwebtoken');
-const users = require('../models/users');
+const users = require('../model/users');
 
 const JWT_EXPIRATION_TIME = process.env.JWT_EXPIRATION_TIME;
 const JSECRET = process.env.JSECRET;
