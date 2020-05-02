@@ -119,3 +119,17 @@ patch:
         patched: '2020-05-01T03:19:56.257Z'
     - serverless > @serverless/enterprise-plugin > dependency-tree > precinct > detective-typescript > @typescript-eslint/typescript-estree > lodash:
         patched: '2020-05-01T03:19:56.257Z'
+    - serverless > @serverless/components > graphlib > lodash:
+        patched: '2020-05-02T18:51:21.059Z'
+    - serverless > @serverless/components > @serverless/inquirer > inquirer > lodash:
+        patched: '2020-05-02T18:51:21.059Z'
+    - serverless > @serverless/components > @serverless/platform-client-china > @serverless/utils-china > winston > async > lodash:
+        patched: '2020-05-02T18:51:21.059Z'
+    - serverless > @serverless/components > @serverless/platform-client-china > @serverless/utils-china > @tencent-sdk/capi > request-promise-native > request-promise-core > lodash:
+        patched: '2020-05-02T18:51:21.059Z'
+  'npm:debug:20170905':
+    - serverless > @serverless/components > @serverless/platform-client-china > @serverless/utils-china > socket.io-stream > debug:
+        patched: '2020-05-02T18:51:21.059Z'
+  'npm:ms:20170412':
+    - serverless > @serverless/components > @serverless/platform-client-china > @serverless/utils-china > socket.io-stream > debug > ms:
+        patched: '2020-05-02T18:51:21.059Z'
