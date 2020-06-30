@@ -13,13 +13,14 @@
   "keywords": [],
   "devDependencies": {
     "serverless-offline": "^6.4.0",
-    "jest": "^26.0.1",
+    "jest": "^26.1.0",
     "mockingoose": "^2.13.2"
   },
   "dependencies": {
     "dotenv": "^8.2.0",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.15",
+    "mongoose": "^5.9.20",
     "serverless": "^1.74.1",
     "mongoose": "^5.9.19",
     "snyk": "^1.355.0"
