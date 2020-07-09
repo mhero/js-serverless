@@ -23,7 +23,7 @@
     "mongoose": "^5.9.20",
     "serverless": "^1.74.1",
     "mongoose": "^5.9.19",
-    "snyk": "^1.355.0"
+    "snyk": "^1.361.2"
   },
   "snyk": true
 }
