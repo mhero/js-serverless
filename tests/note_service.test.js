@@ -1,4 +1,4 @@
-const Note = require('../models/notes');
+const Note = require('../model/notes');
 const mockingoose = require('mockingoose').default;
 const NotesService = require('../service/note_service');
 
