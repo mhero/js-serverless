@@ -8,4 +8,4 @@ Simple rest server with serverless and jwt
 ## Simple calls for dev server ##
   - curl -d '{"username":"mark", "password":"password1"}'  -H "Content-Type: application/json" -X POST http://localhost:3000/dev/sessions
   - curl -H "Authorization: $token" -X GET  http://localhost:3000/dev/notes
-
+  - curl -H "Authorization: $token" --request POST  --data '{"title":"xyz","content":"abc"}' http://localhost:3000/dev/notes
