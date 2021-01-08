@@ -1,24 +1,28 @@
 {
-    "name": "markdown-rest-mark",
-    "version": "1.0.0",
-    "description": "Serverless service CRUD.",
-    "homepage": "https://github.com/mhero",
-    "main": "handler.js",
-    "scripts": {
-        "test": "jest",
-        "offline": "sls offline start --skipCacheInvalidation"
-    },
-    "keywords": [],
-    "devDependencies": {
-        "serverless-offline": "^3.31.3",
-        "jest": "^23.6.0",
-        "mockingoose": "^2.12.0"
-    },
-    "dependencies": {
-        "dotenv": "^6.2.0",
-        "jsonwebtoken": "^8.4.0",
-        "lodash": "^4.17.11",
-        "mongoose": "^5.4.1",
-        "serverless": "^1.35.1"
-    }
+  "name": "markdown-rest-mark",
+  "version": "1.0.0",
+  "description": "Serverless service CRUD.",
+  "homepage": "https://github.com/mhero",
+  "main": "handler.js",
+  "scripts": {
+    "test": "jest",
+    "offline": "sls offline start --skipCacheInvalidation",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
+  },
+  "keywords": [],
+  "devDependencies": {
+    "serverless-offline": "^6.8.0",
+    "jest": "^26.6.3",
+    "mockingoose": "^2.13.2"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.20",
+    "mongoose": "^5.11.11",
+    "serverless": "^2.18.0",
+    "snyk": "^1.437.3"
+  },
+  "snyk": true
 }

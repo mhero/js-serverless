@@ -3,7 +3,7 @@ class Notes {
       this.Note = note;
       this.connectToDatabase = connectToDatabase;
     }
-
+    
     create(event, context, callback) {
         context.callbackWaitsForEmptyEventLoop = false;
         return this.connectToDatabase
