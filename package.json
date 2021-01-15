@@ -20,7 +20,7 @@
     "dotenv": "^8.2.0",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.20",
-    "mongoose": "^5.11.11",
+    "mongoose": "^5.11.12",
     "serverless": "^2.18.0",
     "snyk": "^1.437.3"
   },
