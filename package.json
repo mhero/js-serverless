@@ -12,17 +12,17 @@
   },
   "keywords": [],
   "devDependencies": {
-    "serverless-offline": "^6.8.0",
-    "jest": "^26.6.3",
-    "mockingoose": "^2.13.2"
+    "serverless-offline": "^8.0.0",
+    "jest": "^27.0.6",
+    "mockingoose": "^2.15.2"
   },
   "dependencies": {
-    "dotenv": "^8.2.0",
+    "dotenv": "^10.0.0",
     "jsonwebtoken": "^8.5.1",
-    "lodash": "^4.17.20",
-    "mongoose": "^5.11.11",
-    "serverless": "^2.18.0",
-    "snyk": "^1.437.3"
+    "lodash": "^4.17.21",
+    "mongoose": "^5.13.4",
+    "serverless": "^2.52.1",
+    "snyk": "^1.669.0"
   },
   "snyk": true
 }
