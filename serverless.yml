@@ -2,7 +2,8 @@ service: rest-api
 
 provider:
   name: aws
-  runtime: nodejs6.10
+  runtime: nodejs14.x
+  lambdaHashingVersion: 20201221
   memorySize: 128
   timeout: 10
   stage: dev
