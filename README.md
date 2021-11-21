@@ -12,7 +12,7 @@ Simple rest server with serverless and jwt
   sls offline start
   ```
 ## Simple calls for dev server ##
-  Before install:
+  Before run:
   
   ```bash
   brew install jq
