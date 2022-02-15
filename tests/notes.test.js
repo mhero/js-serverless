@@ -1,8 +1,8 @@
 const Note = require("../model/notes");
-const mockingoose = require("mockingoose").default;
+const mockingoose = require("mockingoose");
 
 it("should find", () => {
-  mockingoose.Note.toReturn({
+  mockingoose(Note).toReturn({
     title: "titulo",
   });
 
