@@ -1,5 +1,5 @@
 const Note = require("../model/notes");
-const mockingoose = require("mockingoose").default;
+const mockingoose = require("mockingoose");
 const NotesService = require("../service/note_service");
 
 let dbPromise = Promise.resolve(mockingoose);
@@ -25,7 +25,7 @@ let initialData = [
 
 describe(`service getOne`, () => {
   test(`returns one note by id`, () => {
-    mockingoose.Note.toReturn(initialData);
+    mockingoose(Note).toReturn(initialData);
 
     const event = {
       pathParameters: "507f191e810c19729de860aa",
@@ -43,7 +43,7 @@ describe(`service getOne`, () => {
 
 describe(`service getAll`, () => {
   test(`returns all notes`, () => {
-    mockingoose.Note.toReturn(initialData);
+    mockingoose(Note).toReturn(initialData);
 
     const event = {};
     const context = {};
