@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "dotenv": "^16.0.3",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "lodash": "^4.17.21",
     "mongoose": "^6.8.1",
     "snyk": "^1.1073.0",
