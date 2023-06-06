@@ -22,7 +22,7 @@
     "lodash": "^4.17.21",
     "snyk": "^1.1175.0",
     "mongoose": "^7.2.2",
-    "serverless": "^3.31.0"
+    "serverless": "^3.32.2"
   },
   "snyk": true
 }
