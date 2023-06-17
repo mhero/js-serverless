@@ -1,6 +1,6 @@
 "use strict";
 
-require("dotenv").config({ path: "../variables.env" });
+require('dotenv').config();
 const _ = require("lodash");
 const jwt = require("jsonwebtoken");
 const aimPolicy = require("./aimPolicy");

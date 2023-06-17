@@ -1,6 +1,6 @@
 "use strict";
 
-require("dotenv").config({ path: "./variables.env" });
+require('dotenv').config();
 const connectToDatabase = require("./db");
 const Note = require("./model/notes");
 const NotesService = require("./service/note_service");
