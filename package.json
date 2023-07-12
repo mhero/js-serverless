@@ -21,7 +21,7 @@
     "jsonwebtoken": "^9.0.1",
     "lodash": "^4.17.21",
     "snyk": "^1.1187.0",
-    "mongoose": "^7.3.2",
+    "mongoose": "^7.3.3",
     "serverless": "^3.33.0"
   },
   "snyk": true
