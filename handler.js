@@ -1,38 +1,33 @@
 "use strict";
 
-require("dotenv").config({ path: "./variables.env" });
+require('dotenv').config();
 const connectToDatabase = require("./db");
 const Note = require("./model/notes");
 const NotesService = require("./service/note_service");
 
-let notes = new NotesService(connectToDatabase(), Note);
+connectToDatabase();
+const notesService = new NotesService(Note);
 
-module.exports.ok = (event, context, callback) => {
-  return callback(null, {
-    statusCode: 200,
-    headers: {
-      "Content-Type": "text/plain",
-    },
-    body: "Ok.",
-  });
-};
+const response = (statusCode, body) => ({
+  statusCode,
+  headers: { "Content-Type": "text/plain" },
+  body
+});
 
-module.exports.create = (event, context, callback) => {
-  return notes.create(event, context, callback);
-};
+module.exports.ok = (_event, _context, callback) => 
+  callback(null, response(200, "Ok."));
 
-module.exports.getOne = (event, context, callback) => {
-  return notes.getOne(event, context, callback);
-};
+module.exports.create = (event, context, callback) => 
+  notesService.create(event, context, callback);
 
-module.exports.getAll = (event, context, callback) => {
-  return notes.getAll(event, context, callback);
-};
+module.exports.getOne = (event, context, callback) => 
+  notesService.getOne(event, context, callback);
 
-module.exports.update = (event, context, callback) => {
-  return notes.update(event, context, callback);
-};
+module.exports.getAll = (event, context, callback) => 
+  notesService.getAll(event, context, callback);
 
-module.exports.delete = (event, context, callback) => {
-  return notes.delete(event, context, callback);
-};
+module.exports.update = (event, context, callback) => 
+  notesService.update(event, context, callback);
+
+module.exports.delete = (event, context, callback) => 
+  notesService.delete(event, context, callback);

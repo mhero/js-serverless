@@ -7,22 +7,19 @@
   "scripts": {
     "test": "jest",
     "offline": "sls offline start --skipCacheInvalidation",
-    "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect"
+    "start": "sls offline start" 
   },
   "keywords": [],
   "devDependencies": {
-    "serverless-offline": "^8.3.1",
-    "jest": "^27.4.3",
-    "mockingoose": "^2.15.2"
+    "serverless-offline": "^13.8.0",
+    "jest": "^29.7.0",
+    "mockingoose": "^2.16.2"
   },
   "dependencies": {
-    "dotenv": "^10.0.0",
-    "jsonwebtoken": "^8.5.1",
+    "dotenv": "^16.4.5",
+    "jsonwebtoken": "^9.0.2",
     "lodash": "^4.17.21",
-    "mongoose": "^6.1.0",
-    "snyk": "^1.786.0",
-    "serverless": "^2.68.0"
-  },
-  "snyk": true
+    "mongoose": "^8.6.3",
+    "serverless": "^4.4.0"
+  }
 }

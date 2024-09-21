@@ -1,6 +1,6 @@
 "use strict";
 
-require("dotenv").config({ path: "../variables.env" });
+require('dotenv').config();
 const _ = require("lodash");
 const jwt = require("jsonwebtoken");
 const aimPolicy = require("./aimPolicy");
@@ -30,7 +30,7 @@ const buildIAMPolicy = (event, user) => {
   );
 };
 
-module.exports.handler = (event, context, callback) => {
+module.exports.handler = (event, _context, callback) => {
   const token = event.authorizationToken;
 
   try {

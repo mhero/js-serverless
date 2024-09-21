@@ -1,123 +1,130 @@
 class Notes {
-  constructor(connectToDatabase, note) {
-    this.Note = note;
-    this.connectToDatabase = connectToDatabase;
+  constructor(note) {
+    this.note = note;
   }
 
-  create(event, context, callback) {
+  async create(event, context) {
     context.callbackWaitsForEmptyEventLoop = false;
-    return this.connectToDatabase
-      .then(() => this.Note.create(JSON.parse(event.body)))
-      .then((note) =>
-        callback(null, {
-          statusCode: 200,
-          body: JSON.stringify(note),
-        })
-      )
-      .catch((err) =>
-        callback(null, {
-          statusCode: err.statusCode || 500,
+    try {
+      const note = await this.note.create(JSON.parse(event.body));
+      return {
+        statusCode: 201,
+        body: JSON.stringify(note),
+      };
+    } catch (err) {
+      return {
+        statusCode: err.statusCode || 500,
+        headers: {
+          "Content-Type": "text/plain",
+        },
+        body: "Could not create the note.",
+      };
+    }
+  }
+
+  async getOne(event, context) {
+    context.callbackWaitsForEmptyEventLoop = false;
+    try {
+      const note = await this.note.findById(event.pathParameters.id);
+
+      if (!note) {
+        return {
+          statusCode: 404,
           headers: {
             "Content-Type": "text/plain",
           },
-          body: "Could not create the note.",
-        })
-      );
+          body: "Note not found.",
+        };
+      }
+
+      return {
+        statusCode: 200,
+        body: JSON.stringify(note),
+      };
+    } catch (err) {
+      return {
+        statusCode: err.statusCode || 500,
+        headers: {
+          "Content-Type": "text/plain",
+        },
+        body: "Could not fetch the note.",
+      };
+    }
   }
 
-  getOne(event, context, callback) {
+  async getAll(_event, context) {
     context.callbackWaitsForEmptyEventLoop = false;
-    return this.connectToDatabase
-      .then(() => this.Note.findById(event.pathParameters.id))
-      .then((note) =>
-        callback(null, {
-          statusCode: 200,
-          body: JSON.stringify(note),
-        })
-      )
-      .catch((err) =>
-        callback(null, {
-          statusCode: err.statusCode || 500,
+    try {
+      const notes = await this.note.find();
+      return {
+        statusCode: 200,
+        body: JSON.stringify(notes),
+      };
+    } catch (err) {
+      return {
+        statusCode: err.statusCode || 500,
+        headers: {
+          "Content-Type": "text/plain",
+        },
+        body: "Could not fetch the notes.",
+      };
+    }
+  }
+
+  async update(event, context) {
+    context.callbackWaitsForEmptyEventLoop = false;
+    try {
+      const note = await this.note.findByIdAndUpdate(
+        event.pathParameters.id,
+        JSON.parse(event.body),
+        { new: true }
+      );
+      return {
+        statusCode: 200,
+        body: JSON.stringify(note),
+      };
+    } catch (err) {
+      return {
+        statusCode: err.statusCode || 500,
+        headers: {
+          "Content-Type": "text/plain",
+        },
+        body: "Could not update the note.",
+      };
+    }
+  }
+
+  async delete(event, context) {
+    context.callbackWaitsForEmptyEventLoop = false;
+    try {
+      const note = await this.note.findByIdAndRemove(event.pathParameters.id);
+
+      if (!note) {
+        return {
+          statusCode: 404,
           headers: {
             "Content-Type": "text/plain",
           },
-          body: "Could not fetch the note.",
-        })
-      );
-  }
+          body: "Note not found.",
+        };
+      }
 
-  getAll(event, context, callback) {
-    context.callbackWaitsForEmptyEventLoop = false;
-    return this.connectToDatabase
-      .then(() => this.Note.find())
-      .then((notes) =>
-        callback(null, {
-          statusCode: 200,
-          body: JSON.stringify(notes),
-        })
-      )
-      .catch((err) =>
-        callback(null, {
-          statusCode: err.statusCode || 500,
-          headers: {
-            "Content-Type": "text/plain",
-          },
-          body: "Could not fetch the notes.",
-        })
-      );
-  }
-
-  update(event, context, callback) {
-    context.callbackWaitsForEmptyEventLoop = false;
-    return this.connectToDatabase
-      .then(() =>
-        this.Note.findByIdAndUpdate(
-          event.pathParameters.id,
-          JSON.parse(event.body),
-          {
-            new: true,
-          }
-        )
-      )
-      .then((note) =>
-        callback(null, {
-          statusCode: 200,
-          body: JSON.stringify(note),
-        })
-      )
-      .catch((err) =>
-        callback(null, {
-          statusCode: err.statusCode || 500,
-          headers: {
-            "Content-Type": "text/plain",
-          },
-          body: "Could not fetch the notes.",
-        })
-      );
-  }
-
-  delete(event, context, callback) {
-    context.callbackWaitsForEmptyEventLoop = false;
-    return this.connectToDatabase
-      .then(() => this.Note.findByIdAndRemove(event.pathParameters.id))
-      .then((note) =>
-        callback(null, {
-          statusCode: 200,
-          body: JSON.stringify({
-            message: "Removed note with id: " + note._id,
-            note: note,
-          }),
-        })
-      )
-      .catch((err) =>
-        callback(null, {
-          statusCode: err.statusCode || 500,
-          headers: {
-            "Content-Type": "text/plain",
-          },
-          body: "Could not fetch the notes.",
-        })
-      );
+      return {
+        statusCode: 204,
+        body: JSON.stringify({
+          message: "Removed note with id: " + note._id,
+          note: note,
+        }),
+      };
+    } catch (err) {
+      return {
+        statusCode: err.statusCode || 500,
+        headers: {
+          "Content-Type": "text/plain",
+        },
+        body: "Could not delete the note.",
+      };
+    }
   }
 }
 

@@ -1,6 +1,6 @@
 "use strict";
 
-require("dotenv").config({ path: "./variables.env" });
+require('dotenv').config();
 const jwt = require("jsonwebtoken");
 const users = require("../model/users");
 
