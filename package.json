@@ -12,7 +12,7 @@
   "keywords": [],
   "devDependencies": {
     "serverless-offline": "^14.4.0",
-    "jest": "^30.0.4",
+    "jest": "^30.0.5",
     "mockingoose": "^2.16.2"
   },
   "dependencies": {
