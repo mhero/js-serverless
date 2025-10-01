@@ -19,7 +19,7 @@
     "dotenv": "^17.2.3",
     "jsonwebtoken": "^9.0.2",
     "lodash": "^4.17.21",
-    "mongoose": "^8.18.2",
+    "mongoose": "^8.18.3",
     "serverless": "^4.19.1"
   }
 }
