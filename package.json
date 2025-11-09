@@ -20,6 +20,6 @@
     "jsonwebtoken": "^9.0.2",
     "lodash": "^4.17.21",
     "mongoose": "^8.19.2",
-    "serverless": "^4.22.0"
+    "serverless": "^4.23.0"
   }
 }
