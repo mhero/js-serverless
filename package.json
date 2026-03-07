@@ -13,7 +13,7 @@
   "devDependencies": {
     "serverless-offline": "^14.4.0",
     "jest": "^30.2.0",
-    "mockingoose": "^2.16.2"
+    "mockingoose": "^3.0.0"
   },
   "dependencies": {
     "dotenv": "^17.2.3",
