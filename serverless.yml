@@ -7,6 +7,7 @@ provider:
   runtime: nodejs20.x
   region: us-east-1
   environment:
+    IS_OFFLINE: ${env:IS_OFFLINE, "false"}
     USERS_TABLE: ${self:service}-users-${sls:stage}
     LINKS_TABLE: ${self:service}-links-${sls:stage}
     CLICKS_TABLE: ${self:service}-clicks-${sls:stage}
