@@ -1,11 +1,12 @@
 "use strict";
 
-const { nanoid } = require("nanoid");
+const { randomBytes } = require("crypto");
 const links = require("../model/links");
 const { SQSClient, SendMessageCommand } = require("@aws-sdk/client-sqs");
 
 const sqs = new SQSClient({ region: process.env.AWS_REGION || "us-east-1" });
 const QUEUE_URL = process.env.CLICKS_QUEUE_URL;
+const nanoid = (size = 7) => randomBytes(size).toString("base64url").slice(0, size);
 
 const isValidUrl = (str) => {
   try {
