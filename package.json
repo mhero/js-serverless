@@ -22,6 +22,6 @@
     "aws-sdk-client-mock": "^4.0.0",
     "aws-sdk-client-mock-jest": "^4.0.0",
     "jest": "^30.4.2",
-    "serverless-offline": "^14.7.2"
+    "serverless-offline": "^14.7.3"
   }
 }
